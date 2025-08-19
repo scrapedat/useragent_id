@@ -1,0 +1,8 @@
+{
+  "aud": "YOUR_PRIVY_APP_ID",
+  "exp": 1724043960, // Expiration time
+  "iat": 1724040360, // Issued at time
+  "iss": "privy.io",
+  "sub": "did:privy:ca...fe", // <-- This is the user's unique Privy DID
+  "jti": "a1b2c3d4-e5f6-..."
+}
