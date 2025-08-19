@@ -1,0 +1,9 @@
+POST /api/orchestrator HTTP/1.1
+Authorization: Bearer <JWT_ACCESS_TOKEN_FROM_PRIVY>
+Content-Type: application/json
+
+{
+  "tool_call": "create_UserAgent.ID_session",
+  "user_identity": "example.UAID",
+  "user_goal": "Find flights to Tokyo"
+}
