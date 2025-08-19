@@ -1,0 +1,18 @@
+{
+  "name": "create_UserAgent.ID_session",
+  "description": "Initializes a new, secure, interactive browser agent session for a user to accomplish a specific goal. This is the first tool to call when a user wants to start a new task.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "user_identity": {
+        "type": "string",
+        "description": "The user's unique, human-readable identity handle. For example: 'justin.UAID'."
+      },
+      "user_goal": {
+        "type": "string",
+        "description": "A clear, natural language description of the user's ultimate objective for this session."
+      }
+    },
+    "required": ["user_identity", "user_goal"]
+  }
+}
