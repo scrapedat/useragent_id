@@ -1,0 +1,9 @@
+{
+  "status": "success",
+  "message": "User identity verified.",
+  "user": {
+    "handle": "example.UAID",
+    "privy_did": "did:privy:ca...fe",
+    "is_verified": true
+  }
+}
