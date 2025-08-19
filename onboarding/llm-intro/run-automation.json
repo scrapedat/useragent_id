@@ -1,0 +1,18 @@
+{
+  "name": "run_UserAgent.ID_automation",
+  "description": "Executes a saved automation or 'recipe' that the user has previously created and approved.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "user_identity": {
+        "type": "string",
+        "description": "The user's unique, human-readable identity handle. For example: 'justin.UAID'."
+      },
+      "automation_name": {
+        "type": "string",
+        "description": "The exact name of the saved automation to run. Example: 'Q3 Sales Report'."
+      }
+    },
+    "required": ["user_identity", "automation_name"]
+  }
+}
