@@ -1,0 +1,23 @@
+# SSH Keys - Never commit private keys
+.ssh/id_*
+.ssh/*_rsa
+.ssh/*_ed25519
+.ssh/known_hosts
+
+# Temporary files
+*.tmp
+*.log
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Editor files
+*.swp
+*.swo
+*~
+
+# Build artifacts
+dist/
+build/
+node_modules/
