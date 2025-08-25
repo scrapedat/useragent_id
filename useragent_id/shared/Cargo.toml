@@ -1,0 +1,19 @@
+[package]
+name = "shared"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+serde = { workspace = true, features = ["derive"] }
+serde_json = { workspace = true }
+chrono = { workspace = true, features = ["serde"] }
+anyhow = { workspace = true }
+thiserror = { workspace = true }
+sysinfo = { workspace = true }
+dirs = { workspace = true }
+uuid = { workspace = true, features = ["v4", "serde"] }
+rdev = { workspace = true, optional = true, features = ["serialize"] }
+
+[features]
+default = []
+events = ["rdev"]

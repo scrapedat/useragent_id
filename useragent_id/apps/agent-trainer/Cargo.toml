@@ -1,0 +1,12 @@
+[package]
+name = "agent-trainer"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+shared = { path = "../../shared", features = ["events"] }
+tokio = { workspace = true }
+serde_json = { workspace = true }
+anyhow = { workspace = true }
+eframe = { workspace = true }
+uuid = { workspace = true, features = ["v4"] }

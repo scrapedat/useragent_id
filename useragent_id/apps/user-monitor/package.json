@@ -1,0 +1,10 @@
+{
+  "name": "user-monitor-dom-recorder",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Minimal DOM recorder for WasmAgentTrainer user-monitor",
+  "license": "MIT",
+  "dependencies": {
+    "chrome-remote-interface": "^0.33.0"
+  }
+}

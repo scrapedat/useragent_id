@@ -1,0 +1,33 @@
+# OS
+.DS_Store
+
+# Rust
+/target/
+**/target/
+
+# Node
+node_modules/
+**/node_modules/
+dist/
+**/dist/
+
+# Python
+*.pyc
+__pycache__/
+
+# Env & local config
+.env
+**/.env
+.env.local
+**/.env.local
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor
+.idea/
+*.swp
+.history/
+.fleet/

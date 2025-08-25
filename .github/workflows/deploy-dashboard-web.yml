@@ -1,0 +1,62 @@
+name: Deploy Dashboard Web to GitHub Pages
+
+on:
+  push:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: useragent_id/apps/dashboard/web/package-lock.json
+
+      - name: Install dependencies
+        working-directory: useragent_id/apps/dashboard/web
+        run: npm ci
+
+      - name: Build
+        env:
+          # Set base path to "/<repo>/" for GitHub Pages project sites
+          BASE_PATH: "/${{ github.event.repository.name }}/"
+          # Optional lead endpoint; set a repo secret named VITE_LEADS_ENDPOINT
+          VITE_LEADS_ENDPOINT: ${{ secrets.VITE_LEADS_ENDPOINT }}
+        working-directory: useragent_id/apps/dashboard/web
+        run: |
+          echo "Building with base=${BASE_PATH}"
+          BASE_PATH="$BASE_PATH" npm run build
+          # Ensure Pages doesn't run Jekyll
+          touch dist/.nojekyll
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: useragent_id/apps/dashboard/web/dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
