@@ -1,0 +1,51 @@
+2025-08-25: Implemented DOM-aware step generation in task-learner.
+- learner.rs now parses dom_recorder.js JSONL (navigated, page_load, dom_event click/keydown).
+- Builds concrete AutomationSteps: Navigate(url), Click(xpath/tag/text), Type(aggregated text), Wait (page load / Enter boundary).
+- Fallback remains: simple pattern mining over OS events if no DOM lines.
+- No new deps added; used file-order timestamps.
+
+2025-08-25: Small improvements
+- DOM recorder now emits a basic CSS selector (id/class or nth-of-type chain) along with xpath and useful attrs.
+- Learner prefers CSS selector for targets, falls back to XPath.
+- Enter key now becomes Execute (submit) when the next event is a navigation or page load.
+
+Plan and roadmap (working draft)
+- Session replay
+  - Node CDP replayer (done): navigate, click (css/xpath), keydown (Enter/text), adjustable speed.
+  - Replay with narration (done): align narration lines to DOM timeline and display captions overlay.
+  - Dashboard controls (done): speed slider (50-1200ms) and Pause/Resume toggle using a temp file watched by the replayer.
+  - Future: progress UI, speed slider, step-by-step mode, error recovery (selector fallback).
+- Narration & Chat
+  - Sessions panel will show narration tail (done) and a chat box (stub done).
+  - Next: wire chat to a local ai-service endpoint; allow annotations to correct targets or add hints.
+  - Optional: TTS during replay for narrated captions.
+- Model strategy
+  - LAM + LLM combo: deterministic event fusion + small LLM for NL understanding and selector recovery.
+  - Start with a local SLM via a configurable endpoint; keep system fully functional without it.
+- Learner evolution
+  - Stronger selectors: prefer id/name/[aria-label], stabilize CSS; record activeElement on typing.
+  - Merge OS and DOM to align clicks with on-screen coords when needed.
+  - Sequence mining with segmentation by navigation and high-level intents from narration.
+- Dashboard
+  - Agents tab wiring to agent-runner.
+  - Replay controls: play/pause/seek; narration on/off; speed.
+  - Automations/Issues schemas & CRUD.
+
+2025-08-25
+- Added new app: apps/dashboard (eframe/egui) with tabs: Sessions, Agents, Automations, Issues.
+- Implemented Sessions tab backend (sessions.rs):
+  - Scans data/<app_id>/events/session_*.jsonl and builds SessionSummary with counts/time range.
+  - Reads/writes per-session metadata alongside each log as session_*.meta.json.
+  - UI supports listing sessions, editing title/description, and saving metadata.
+- Build is green across workspace.
+
+Next focus areas:
+- Sessions: add simple replay view + narration preview; surface learned tasks per session.
+- User Monitor: consider augmenting OS-level recorder with a browser DOM recorder (Playwright) and persistent browser profile.
+- Agents/Automations/Issues tabs: wire to existing data dirs and persist formats.
+
+2025-08-25 (later same day)
+- AppConfig extended with browser_profile_dir and cdp_port; all apps use AppConfig::load as before.
+- Dashboard Sessions shows DOM counts and tail previews for OS/DOM/narration.
+- User Monitor UI shows Chromium/DOM recorder status and Node/CDP dependency checks.
+- user-monitor package.json added for dom recorder dependency.

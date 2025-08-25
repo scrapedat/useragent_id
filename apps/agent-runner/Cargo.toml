@@ -1,0 +1,14 @@
+[package]
+name = "agent-runner"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+shared = { path = "../../shared" }
+tokio = { workspace = true }
+eframe = { workspace = true }
+serde_json = { workspace = true }
+anyhow = { workspace = true }
+thirtyfour = { workspace = true }
+uuid = { workspace = true, features = ["v4", "serde"] }
+rfd = { workspace = true }
