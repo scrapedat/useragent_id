@@ -35,6 +35,11 @@ yarn-error.log*
 *.ssh
 id_rsa
 id_rsa.pub
+# SSH keys and directories
+.ssh/
+**/.ssh/
+id_ed25519
+id_ed25519.pub
 #github
 *.github
 *.vscode
