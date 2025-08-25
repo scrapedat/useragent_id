@@ -31,3 +31,12 @@ yarn-error.log*
 *.swp
 .history/
 .fleet/
+
+*.ssh
+id_rsa
+id_rsa.pub
+#github
+*.github
+*.vscode
+~/gm_ml 
+
