@@ -7,6 +7,13 @@ members = [
     "apps/user-monitor",
     "apps/dashboard",
     "shared",
+    "memory",
+    "planner",
+    "eval",
+    "agents/dispatcher",
+    "agents/echo_wasm",
+    "agents/scraper_chromiumoxide",
+    "train",
 ]
 
 [workspace.dependencies]

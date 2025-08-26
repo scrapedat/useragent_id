@@ -1,0 +1,7 @@
+{
+  "id": "00000000-0000-0000-0000-000000000001",
+  "name": "Echo WASM",
+  "description": "Echoes input JSON back to the caller via the WASM ABI",
+  "agent_type": "Wasm",
+  "executable_path": "../../target/wasm32-unknown-unknown/release/echo_wasm.wasm"
+}

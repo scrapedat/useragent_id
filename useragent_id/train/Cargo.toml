@@ -1,0 +1,10 @@
+[package]
+name = "train"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+serde = { workspace = true, features = ["derive"] }
+serde_json = { workspace = true }
+walkdir = "2"
+anyhow = { workspace = true }

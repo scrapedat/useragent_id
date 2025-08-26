@@ -242,6 +242,40 @@ pub fn render_sessions(ui: &mut egui::Ui, config: &AppConfig) {
                         }
                     });
                 });
+
+                // New: Traces panel
+                ui.collapsing("Execution Traces", |ui| {
+                    if s.traces.is_empty() {
+                        ui.label("No traces found.");
+                    } else {
+                        egui::ScrollArea::vertical().max_height(180.0).show(ui, |ui| {
+                            for tr in &s.traces {
+                                ui.horizontal(|ui| {
+                                    ui.label(egui::RichText::new(tr.file_name().unwrap_or_default().to_string_lossy()).monospace());
+                                    if ui.button("Open").clicked() {
+                                        // Store selected trace path in UI memory to render details below
+                                        ui.data_mut(|d| d.insert_temp("selected_trace".into(), tr.to_string_lossy().to_string()));
+                                    }
+                                });
+                            }
+                        });
+                        let selected_trace: Option<String> = ui.data(|d| d.get_temp("selected_trace".into()));
+                        if let Some(sel) = selected_trace {
+                            if let Ok(txt) = std::fs::read_to_string(&sel) {
+                                if let Ok(val) = serde_json::from_str::<serde_json::Value>(&txt) {
+                                    let agent = val.get("agent_type").and_then(|v| v.as_str()).unwrap_or("");
+                                    let status = val.get("status").map(|v| v.to_string()).unwrap_or_default();
+                                    let when = val.get("timestamp").and_then(|v| v.as_u64()).unwrap_or(0);
+                                    ui.label(format!("Agent: {} — Status: {} — At: {}", agent, status, when));
+                                    let mut raw = val.to_string();
+                                    ui.add(egui::TextEdit::multiline(&mut raw).desired_rows(6));
+                                } else {
+                                    ui.label("Failed to parse trace JSON");
+                                }
+                            }
+                        }
+                    }
+                });
             });
             ui.add_space(8.0);
         }

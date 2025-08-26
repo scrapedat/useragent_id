@@ -4,6 +4,7 @@ use std::sync::mpsc;
 use uuid::Uuid;
 
 use crate::{RunnerRequest, RunnerUpdate};
+use crate::executor;
 
 pub struct AgentRunnerApp {
     /// List of all available agents found in the `trained-agents` directory.
@@ -88,6 +89,19 @@ impl eframe::App for AgentRunnerApp {
                         }
                     }
                 });
+                // Simple objective input + run
+                let mut objective: String = ui
+                    .data(|d| d.get_temp("runner_objective".into()))
+                    .unwrap_or_else(|| "Open and read example.com".to_string());
+                ui.text_edit_singleline(&mut objective);
+                ui.data_mut(|d| d.insert_temp("runner_objective".into(), objective.clone()));
+                if ui.button("Plan+Run Objective").clicked() {
+                    // Fire-and-forget, run in background to not block UI
+                    let obj = objective.clone();
+                    std::thread::spawn(move || {
+                        let _ = executor::run_objective(&obj);
+                    });
+                }
             });
 
             ui.separator();

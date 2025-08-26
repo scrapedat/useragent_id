@@ -12,3 +12,7 @@ anyhow = { workspace = true }
 thirtyfour = { workspace = true }
 uuid = { workspace = true, features = ["v4", "serde"] }
 rfd = { workspace = true }
+eval = { path = "../../eval" }
+memory = { path = "../../memory" }
+agents-dispatcher = { path = "../../agents/dispatcher" }
+planner = { path = "../../planner" }

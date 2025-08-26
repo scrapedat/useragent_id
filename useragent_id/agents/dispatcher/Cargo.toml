@@ -1,0 +1,17 @@
+[package]
+name = "agents-dispatcher"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+anyhow = { workspace = true }
+wasmtime = "26"
+async-trait = "0.1"
+tokio = { version = "1", features = ["full"] }
+
+[dev-dependencies]
+anyhow = { workspace = true }
+tokio = { version = "1", features = ["full"] }
+
+[examples]
+run_echo = { path = "examples/run_echo.rs" }
