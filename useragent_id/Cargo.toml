@@ -6,6 +6,7 @@ members = [
     "apps/task-learner",
     "apps/user-monitor",
     "apps/dashboard",
+    "apps/status-api",
     "shared",
     "memory",
     "planner",
