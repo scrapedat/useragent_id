@@ -19,7 +19,7 @@ members = [
 
 [workspace.dependencies]
 anyhow = "1.0"
-axum = { version = "0.6", features = ["json"] }
+axum  m m    nmn m  = { version = "0.6", features = ["json"] }
 chrono = { version = "0.4", features = ["serde"] }
 crossbeam-channel = "0.5.12"
 dirs = "5.0"
@@ -28,8 +28,6 @@ glob = "0.3.1"
 notify = "6.1.1"
 rdev = "0.5.3"
 rfd = "0.14.1"
-serde = { version = "1.0", features = ["derive"] }
-serde_json = "1.0"
 sysinfo = "0.29"
 thirtyfour = "0.34.0"
 thiserror = "1.0"
