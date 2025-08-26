@@ -2,6 +2,8 @@
 .vscode/
 .idea/
 *.code-workspace
+.snapshots/
+.kilocode/
 
 # OS/File junk
 .DS_Store
