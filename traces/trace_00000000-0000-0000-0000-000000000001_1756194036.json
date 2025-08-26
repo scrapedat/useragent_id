@@ -1,0 +1,11 @@
+{
+  "trace_id": "trace_00000000-0000-0000-0000-000000000001_1756194036",
+  "task_id": "00000000-0000-0000-0000-000000000001",
+  "agent_type": "Echo WASM",
+  "input": "Echoes input JSON back to the caller via the WASM ABI",
+  "output": "{\"echo\":\"{\\\"msg\\\":\\\"from-agent-runner\\\"}\"}",
+  "expected_output": null,
+  "status": "Success",
+  "timestamp": 1756194036,
+  "metadata": {}
+}

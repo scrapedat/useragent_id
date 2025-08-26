@@ -1,0 +1,29 @@
+[package]
+name = "planner"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+serde = { workspace = true, features = ["derive"] }
+serde_json = { workspace = true }
+memory = { path = "../memory" }
+anyhow = { workspace = true }
+actix = "0.13"
+actix-rt = "2.8"
+async-trait = "0.1.74"
+chrono = { version = "0.4", features = ["serde"] }
+futures = "0.3"
+log = "0.4"
+lru = "0.12"
+reqwest = { version = "0.11", features = ["json", "rustls-tls"] }
+thiserror = "1.0"
+tokio = { version = "1", features = ["full"] }
+uuid = { version = "1.4", features = ["v4", "serde"] }
+
+[dev-dependencies]
+tempfile = "3.8"
+proptest = "1.4"
+
+[features]
+default = []
+mock = []

@@ -12,8 +12,8 @@ thiserror = { workspace = true }
 sysinfo = { workspace = true }
 dirs = { workspace = true }
 uuid = { workspace = true, features = ["v4", "serde"] }
-rdev = { workspace = true, optional = true, features = ["serialize"] }
+rdev = { workspace = true, features = ["serialize"] }
 
 [features]
 default = []
-events = ["rdev"]
+events = []

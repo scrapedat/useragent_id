@@ -28,6 +28,8 @@ pub struct SessionSummary {
     pub end: Option<DateTime<Utc>>,
     pub title: String,
     pub description: String,
+    // New: collected traces related to this session (best-effort)
+    pub traces: Vec<PathBuf>,
 }
 
 fn meta_path_for(log_path: &Path) -> PathBuf {
@@ -202,7 +204,21 @@ fn summarize_session(path: &Path) -> Result<Option<SessionSummary>> {
         end,
         title,
         description,
+        traces: find_related_traces(path.parent(), &session_id),
     }))
+}
+
+fn find_related_traces(parent: Option<&Path>, session_id: &Uuid) -> Vec<PathBuf> {
+    let mut out = Vec::new();
+    // Heuristic: collect all files in ./traces; later we can key by task/session id inside the JSON
+    let root = PathBuf::from("traces");
+    if root.exists() {
+        if let Ok(rd) = std::fs::read_dir(&root) { for e in rd.flatten() {
+            let p = e.path();
+            if p.extension().and_then(|s| s.to_str()) == Some("json") { out.push(p); }
+        }}
+    }
+    out
 }
 
 pub fn load_meta(meta_path: &Path) -> Result<Option<SessionMeta>> {
