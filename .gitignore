@@ -1,0 +1,59 @@
+# Editor/IDE
+.vscode/
+.idea/
+*.code-workspace
+
+# OS/File junk
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*.tmp
+
+# Env/Secrets
+.env
+.env.*
+
+# Rust
+/target/
+**/target/
+# wasm builds
+**/wasm32-unknown-unknown/
+
+# Node/Frontend
+node_modules/
+dist/
+build/
+
+# Python/venv (gm_ml)
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+# project-specific local venv & bins
+/gm_ml/pyvenv.cfg
+/gm_ml/lib/
+/gm_ml/lib64/
+/gm_ml/include/python3.12/
+/gm_ml/dataset/bin/
+
+# Generated data/artifacts
+/traces/
+/trained-agents/
+/data/**/events/
+/data/**/learned_tasks/
+
+# Logs and caches
+*.log
+logs/
+.cache/
+.ruff_cache/
+.mypy_cache/
+pytest_cache/
+
+# Binaries/compiled
+*.so
+*.dll
+*.exe
+*.out
+*.rlib
