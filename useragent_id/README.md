@@ -49,6 +49,13 @@ Pull requests and suggestions are welcome! See the `CONTRIBUTING.md` for details
 
 ## Repository hygiene (ignored artifacts)
 
+The following files and directories are ignored by Git and not tracked in the repository:
+- Build artifacts: `/target/`, wasm builds
+- Python environment: `/gm_ml/lib/`, `/gm_ml/lib64/`, Python cache files
+- Editor/IDE files: `.vscode/`, `.idea/`, `.snapshots/`, `.kilocode/`
+- Generated data: `/traces/`, `/trained-agents/`, event logs
+- Environment files: `.env`
+
 To keep the repo lean and reproducible, common local-only and generated artifacts are ignored via `.gitignore`:
 
 - Editor/IDE: `.vscode/`, `.snapshots/`, `.kilocode/`, `*.code-workspace`
