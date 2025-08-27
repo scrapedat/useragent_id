@@ -47,6 +47,18 @@ WasmAgentTrainer is a human-friendly automation platform powered by small, agent
 Pull requests and suggestions are welcome! See the `CONTRIBUTING.md` for details.
 
 
+## Repository hygiene (ignored artifacts)
+
+To keep the repo lean and reproducible, common local-only and generated artifacts are ignored via `.gitignore`:
+
+- Editor/IDE: `.vscode/`, `.snapshots/`, `.kilocode/`, `*.code-workspace`
+- Rust builds: `target/`, `**/wasm32-unknown-unknown/`
+- Python venv (gm_ml): `gm_ml/lib/`, `gm_ml/lib64/`, `gm_ml/include/python3.12/`, `gm_ml/dataset/bin/`, `gm_ml/pyvenv.cfg`
+- Generated data: `traces/`, `trained-agents/`, `data/**/events/`, `data/**/learned_tasks/`
+
+If you need to persist trained artifacts, export them to an external storage or release asset instead of committing them.
+
+
 Below are example screenshots of the UI that human users interact with to automate their tasks:
 
 ![UI Dashboard](https://via.placeholder.com/600x300?text=UI+Dashboard)
